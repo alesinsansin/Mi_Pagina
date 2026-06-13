@@ -1,40 +1,32 @@
 const API_URL = "/eventos";
 
 async function obtenerEventos() {
-    const res = await fetch(API_URL);
-    const eventos = await res.json();
+    try {
+        const res = await fetch(API_URL);
+        const eventos = await res.json();
 
-    const tabla = document.getElementById("tablaEventos");
-    tabla.innerHTML = "";
+        const tabla = document.getElementById("tablaEventos");
+        tabla.innerHTML = "";
 
-    eventos.forEach(evento => {
-        tabla.innerHTML += `
-            <tr>
-                <td>${evento.cliente}</td>
-                <td>${evento.tipoEvento}</td>
-                <td>${evento.fecha}</td>
-                <td>${evento.equipo}</td>
-                <td>${evento.telefono}</td>
-                <td>${evento.estado}</td>
-                <td>
-                    <button class="btn-editar" onclick="editarEvento(
-                        '${evento._id}',
-                        '${evento.cliente}',
-                        '${evento.tipoEvento}',
-                        '${evento.fecha}',
-                        '${evento.equipo}',
-                        '${evento.direccion}',
-                        '${evento.telefono}',
-                        '${evento.estado}'
-                    )">Editar</button>
-
-                    <button class="btn-eliminar" onclick="eliminarEvento('${evento._id}')">
-                        Eliminar
-                    </button>
-                </td>
-            </tr>
-        `;
-    });
+        eventos.forEach(evento => {
+            tabla.innerHTML += `
+                <tr>
+                    <td>${evento.cliente}</td>
+                    <td>${evento.tipoEvento}</td>
+                    <td>${evento.fecha}</td>
+                    <td>${evento.equipo}</td>
+                    <td>${evento.telefono}</td>
+                    <td>${evento.estado}</td>
+                    <td>
+                        <button class="btn-editar" onclick="editarEvento('${evento._id}', '${evento.cliente}', '${evento.tipoEvento}', '${evento.fecha}', '${evento.equipo}', '${evento.direccion}', '${evento.telefono}', '${evento.estado}')">Editar</button>
+                        <button class="btn-eliminar" onclick="eliminarEvento('${evento._id}')">Eliminar</button>
+                    </td>
+                </tr>
+            `;
+        });
+    } catch (error) {
+        console.error("Error al obtener eventos:", error);
+    }
 }
 
 document.getElementById("formulario").addEventListener("submit", async (e) => {
@@ -52,30 +44,30 @@ document.getElementById("formulario").addEventListener("submit", async (e) => {
         estado: document.getElementById("estado").value
     };
 
-    if (id) {
-        await fetch(`${API_URL}/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(evento)
-        });
-    } else {
-        await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(evento)
-        });
+    try {
+        if (id) {
+            await fetch(`${API_URL}/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(evento)
+            });
+        } else {
+            await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(evento)
+            });
+        }
+
+        document.getElementById("formulario").reset();
+        document.getElementById("eventoId").value = "";
+        document.getElementById("tituloFormulario").textContent = "Registrar Evento";
+        document.getElementById("btnGuardar").textContent = "Guardar Evento";
+
+        obtenerEventos();
+    } catch (error) {
+        console.error("Error al guardar evento:", error);
     }
-
-    document.getElementById("formulario").reset();
-    document.getElementById("eventoId").value = "";
-    document.getElementById("tituloFormulario").textContent = "Registrar Evento";
-    document.getElementById("btnGuardar").textContent = "Guardar Evento";
-
-    obtenerEventos();
 });
 
 function editarEvento(id, cliente, tipoEvento, fecha, equipo, direccion, telefono, estado) {
