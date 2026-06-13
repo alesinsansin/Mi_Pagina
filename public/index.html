@@ -1,16 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Renta de Audio</title>
-<link rel="stylesheet" href="style.css">
-</head>
 
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#111;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:12px;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    box-sizing:border-box;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 14px;
+    border:none;
+    cursor:pointer;
+    color:white;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+#btnGuardar{
+    width:100%;
+    margin-top:15px;
+    background:#0066cc;
+}
+
+#btnGuardar:hover{
+    background:#004d99;
+}
+
+.btn-editar{
+    background:#f39c12;
+    margin-right:5px;
+}
+
+.btn-eliminar{
+    background:#e74c3c;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th, td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    background:#0066cc;
+    color:white;
+}
+
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+</head>
 <body>
+
+<div class="container">
 
 <h1>Sistema de Renta de Audio</h1>
 
+<div class="card">
+
+<h2 id="tituloFormulario">Registrar Evento</h2>
+
 <form id="formulario">
+
+<input type="hidden" id="eventoId">
+
+<div class="grid">
 
 <input id="cliente" placeholder="Nombre del Cliente" required>
 
@@ -30,9 +132,40 @@
 <option>Cancelada</option>
 </select>
 
-<button type="submit">Guardar Evento</button>
+</div>
+
+<button type="submit" id="btnGuardar">
+Guardar Evento
+</button>
 
 </form>
+
+</div>
+
+<div class="card">
+
+<h2>Eventos Registrados</h2>
+
+<table>
+<thead>
+<tr>
+<th>Cliente</th>
+<th>Evento</th>
+<th>Fecha</th>
+<th>Equipo</th>
+<th>Teléfono</th>
+<th>Estado</th>
+<th>Acciones</th>
+</tr>
+</thead>
+
+<tbody id="tablaEventos"></tbody>
+
+</table>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
