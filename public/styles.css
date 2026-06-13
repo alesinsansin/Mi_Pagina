@@ -1,18 +1,84 @@
 body{
-font-family:Arial;
-max-width:800px;
-margin:auto;
-padding:20px;
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
 }
 
-input,
-select{
-width:100%;
-padding:10px;
-margin:5px;
+.container{
+    max-width:1000px;
+    margin:auto;
 }
 
-button{
-padding:10px;
-width:100%;
+h1{
+    text-align:center;
+    font-size:36px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    margin-bottom:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    box-sizing:border-box;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+#btnGuardar{
+    width:100%;
+    padding:12px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+#btnGuardar:hover{
+    background:#004d99;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th, td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    background:#0066cc;
+    color:white;
+}
+
+.btn-editar{
+    background:#f39c12;
+    color:white;
+    border:none;
+    padding:8px;
+    margin-right:5px;
+    cursor:pointer;
+    border-radius:4px;
+}
+
+.btn-eliminar{
+    background:#e74c3c;
+    color:white;
+    border:none;
+    padding:8px;
+    cursor:pointer;
+    border-radius:4px;
 }
