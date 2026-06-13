@@ -4,100 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Renta de Audio</title>
-
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f9;
-    margin:0;
-    padding:20px;
-}
-
-.container{
-    max-width:1000px;
-    margin:auto;
-}
-
-h1{
-    text-align:center;
-    color:#111;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    margin-bottom:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.12);
-}
-
-.grid{
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap:12px;
-}
-
-input, select{
-    width:100%;
-    padding:10px;
-    box-sizing:border-box;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
-
-button{
-    padding:10px 14px;
-    border:none;
-    cursor:pointer;
-    color:white;
-    font-weight:bold;
-    border-radius:5px;
-}
-
-#btnGuardar{
-    width:100%;
-    margin-top:15px;
-    background:#0066cc;
-}
-
-#btnGuardar:hover{
-    background:#004d99;
-}
-
-.btn-editar{
-    background:#f39c12;
-    margin-right:5px;
-}
-
-.btn-eliminar{
-    background:#e74c3c;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-}
-
-th, td{
-    border:1px solid #ddd;
-    padding:10px;
-    text-align:left;
-}
-
-th{
-    background:#0066cc;
-    color:white;
-}
-
-@media(max-width:700px){
-    .grid{
-        grid-template-columns:1fr;
-    }
-}
-</style>
-
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
 <div class="container">
@@ -111,8 +20,6 @@ th{
 <form id="formulario">
 
 <input type="hidden" id="eventoId">
-
-<div class="grid">
 
 <input id="cliente" placeholder="Nombre del Cliente" required>
 
@@ -132,11 +39,7 @@ th{
 <option>Cancelada</option>
 </select>
 
-</div>
-
-<button type="submit" id="btnGuardar">
-Guardar Evento
-</button>
+<button type="submit" id="btnGuardar">Guardar Evento</button>
 
 </form>
 
@@ -160,7 +63,6 @@ Guardar Evento
 </thead>
 
 <tbody id="tablaEventos"></tbody>
-
 </table>
 
 </div>
